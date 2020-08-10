@@ -164,6 +164,9 @@ Graphite stores tag information in a separate tag database (TagDB). Please check
 ## Collectd
 Use `COLLECTD=1` environment variable to enable local collectd instance
 
+## Carbon
+CARBON_OPTS: Extra parameters for all carbon services (i.e. `--debug`)
+
 ## Carbon-relay
 Use `RELAY=1` environment variable to enable carbon relay instance. Use `[relay]` section of carbon.conf to configure it.
 
