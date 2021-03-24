@@ -70,7 +70,8 @@ ARG carbon_repo=https://github.com/graphite-project/carbon.git
 RUN . /opt/graphite/bin/activate \
  && git clone -b ${carbon_version} --depth 1 ${carbon_repo} /usr/local/src/carbon \
  && cd /usr/local/src/carbon \
- && pip3 install -r requirements.txt \
+ && awk -v line="2" 'NR!=line' requirements.txt >requirements2.txt\
+ && pip3 install -r requirements2.txt \
  && python3 ./setup.py install
 
 # install graphite
@@ -79,7 +80,8 @@ ARG graphite_repo=https://github.com/graphite-project/graphite-web.git
 RUN . /opt/graphite/bin/activate \
  && git clone -b ${graphite_version} --depth 1 ${graphite_repo} /usr/local/src/graphite-web \
  && cd /usr/local/src/graphite-web \
- && pip3 install -r requirements.txt \
+ && awk -v line="48" 'NR!=line' requirements.txt >requirements2.txt \
+ && pip3 install -r requirements2.txt \
  && python3 ./setup.py install
 
 # install statsd (as we have to use this ugly way)
